@@ -1,7 +1,7 @@
 {
   "name": "@solidgate/react-sdk",
   "repository": "https://bitbucket.org/solidgate/react-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Solidgate",
   "description": "Solidgate react sdk loader",
   "main": "dist/cjs/index.js",
