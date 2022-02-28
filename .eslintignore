@@ -1,0 +1,8 @@
+build/
+dist/
+node_modules/
+.snapshots/
+*.min.js
+/**/*.d.ts
+*.scss
+*.css

@@ -1,0 +1,68 @@
+{
+  "name": "@solidgate/react-sdk",
+  "repository": "https://bitbucket.org/solidgate/react-sdk",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Solidgate team",
+  "description": "Solidgate react sdk loader",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/esm/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@solidgate/client-sdk-loader": "1.0.0",
+    "react-scripts": "5.0.0",
+    "styled-components": "^5.3.3"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "start": "react-scripts start",
+    "prepublishonly": "npm run build",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs ",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "i-all": "npm i && cd playground && npm i"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^17.0.20",
+    "@types/react-dom": "^17.0.9",
+    "@types/styled-components": "^5.1.22",
+    "cross-env": "^7.0.3",
+    "typescript": "^4.4.2"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
