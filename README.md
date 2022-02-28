@@ -89,6 +89,13 @@ ReactDOM.render(<App />, document.body);
 
 ```
 
-## TypeScript support
+## Build
 
-All TypeScript declarations you can find in ``` @solidgate/react-sdk ```
+Run ``` npm run build ``` to build the project. The build artifacts will be stored in the dist/ directory.
+
+## Development
+
+1. `cd playground`
+2. `npm i`
+3. `npm run start`
+4. Navigate to http://localhost:3000/. The app will automatically reload if you change any of the
