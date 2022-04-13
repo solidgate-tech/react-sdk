@@ -50,7 +50,9 @@ const App = () => {
   const handleOnRedirectMessage = (e: SdkMessage[MessageType.Redirect]) => {}
 
   const handleOnCustomStylesAppended = (e: SdkMessage[MessageType.CustomStylesAppended]) => {}
-
+  
+  const handleCard = (e: SdkMessage[MessageType.Card]) => {}
+  
   const handleOnReadyPaymentInstance = (form: ClientSdkInstance) => {
     // eslint-disable-next-line no-console
     console.log('form', form)
@@ -59,27 +61,28 @@ const App = () => {
   return (
     <div>
       <div ref={appleContainerRef} />
-          <Payment
-              googlePayButtonParams={googlePayButtonParams}
-              applePayButtonParams={applePayButtonParams}
-              googlePayContainerRef={googleContainerRef}
-              applePayContainerRef={appleContainerRef}
-              merchantData={merchantData}
-              styles={customFormStyles}
-              formParams={formParams}
-              onError={handleOnError}
-              onFail={handleOnFail}
-              onMounted={handleOnMounted}
-              onOrderStatus={handleOrderStatus}
-              onResize={handleOnResize}
-              onSuccess={handleOnSuccess}
-              onSubmit={handleOnSubmit}
-              onInteraction={handleOnInteraction}
-              onVerify={handleOnVerify}
-              onFormRedirect={handleOnRedirectMessage}
-              onCustomStylesAppended={handleOnCustomStylesAppended}
-              onReadyPaymentInstance={handleOnReadyPaymentInstance}
-          />
+      <Payment
+          googlePayButtonParams={googlePayButtonParams}
+          applePayButtonParams={applePayButtonParams}
+          googlePayContainerRef={googleContainerRef}
+          applePayContainerRef={appleContainerRef}
+          merchantData={merchantData}
+          styles={customFormStyles}
+          formParams={formParams}
+          onError={handleOnError}
+          onFail={handleOnFail}
+          onCard={handleCard}
+          onMounted={handleOnMounted}
+          onOrderStatus={handleOrderStatus}
+          onResize={handleOnResize}
+          onSuccess={handleOnSuccess}
+          onSubmit={handleOnSubmit}
+          onInteraction={handleOnInteraction}
+          onVerify={handleOnVerify}
+          onFormRedirect={handleOnRedirectMessage}
+          onCustomStylesAppended={handleOnCustomStylesAppended}
+          onReadyPaymentInstance={handleOnReadyPaymentInstance}
+      />
       <div ref={googleContainerRef} />
     </div>
   )
@@ -98,4 +101,4 @@ Run ``` npm run build ``` to build the project. The build artifacts will be stor
 1. `cd playground`
 2. `npm i`
 3. `npm run start`
-4. Navigate to http://localhost:3000/. The app will automatically reload if you change any of the
+4. Navigate to http://localhost:3000/. 

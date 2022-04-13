@@ -60,7 +60,8 @@ const Payment: FC<PaymentProps> = (props) => {
     onInteraction = () => {},
     onOrderStatus = () => {},
     onResize = () => {},
-    onReadyPaymentInstance = () => {}
+    onReadyPaymentInstance = () => {},
+    onCard = () => {}
   } = props
 
   const getInitConfig = () => {
@@ -134,6 +135,7 @@ const Payment: FC<PaymentProps> = (props) => {
     onInteraction,
     onOrderStatus,
     onResize,
+    onCard,
   }, sdkInstance)
 
   return (
