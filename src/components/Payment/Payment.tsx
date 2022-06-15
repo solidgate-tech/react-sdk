@@ -20,6 +20,7 @@ import { IFRAME_CONTAINER_ID } from '../../constants'
 import usePaymentSubscriptions from "./usePaymentSubscriptions"
 
 import getPayButtonParams from "../../utils/getPayButtonParams"
+import '../../boot'
 
 interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   merchantData: InitConfig['merchantData']
