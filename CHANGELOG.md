@@ -1,3 +1,9 @@
+**1.3.1**
+
+Fixed try to render before container exists bug during second initialization 
+
+***
+
 **1.3.0**
 
 Added **formParams.buttonType** config param

@@ -3,7 +3,7 @@ import {
   useEffect,
   useState,
   RefObject,
-  memo,
+  memo, useLayoutEffect
 } from 'react'
 import styled from "styled-components"
 
@@ -114,7 +114,7 @@ const Payment: FC<PaymentProps> = (props) => {
     setSdkInstance(clientSdkInstance)
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     initClientSdk()
   }, [])
 
