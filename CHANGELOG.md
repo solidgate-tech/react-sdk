@@ -1,3 +1,9 @@
+**1.3.2**
+
+Add support for React v18.0 and higher
+
+***
+
 **1.3.1**
 
 Fixed try to render before container exists bug during second initialization 
