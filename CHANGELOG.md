@@ -1,3 +1,9 @@
+**1.4.0**
+
+Added  **Cartes Bancaires** card brand support
+
+***
+
 **1.3.2**
 
 Add support for React v18.0 and higher
