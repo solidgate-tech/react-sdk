@@ -21,6 +21,7 @@ const getPayButtonParams = <T extends 'googlePayButtonParams' | 'applePayButtonP
     key: T,
     container: HTMLDivElement | null
 ) => {
+  const syntheticContainerId = payButtonIds[key].id;
   const payParams = {
     ...(config[key] || {})
   } as NonNullable<InitConfig[T]>
@@ -30,13 +31,13 @@ const getPayButtonParams = <T extends 'googlePayButtonParams' | 'applePayButtonP
   }
 
   if (container) {
-    if (container.id) {
+    if (container.id && container.id !== syntheticContainerId) {
       console.warn(
         `Id attribute "${container.id}" of ${payButtonIds[key].title} container will be overridden`
       )
     }
 
-    payParams.containerId = payButtonIds[key].id
+    payParams.containerId = syntheticContainerId
     container.id = payParams.containerId
   }
 

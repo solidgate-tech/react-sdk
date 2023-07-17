@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, { useRef, useState } from 'react'
 import Payment, {
   InitConfig,
   MessageType,
@@ -25,7 +25,7 @@ const applePayButtonParams = {
   type: 'plain'
 }
 
-const formParams: InitConfig['formParams'] = {
+const initialFormParams: InitConfig['formParams'] = {
   submitButtonText: 'Pay',
   isCardHolderVisible: true,
   headerText: 'Enter your debit or credit card details (from merchant)',
@@ -49,6 +49,7 @@ const customFormStyles = {
 }
 
 function App () {
+  const [formParams, setFormParams] = useState(initialFormParams)
 
   const appleContainerRef = useRef(null)
   const googleContainerRef = useRef(null)
@@ -115,6 +116,13 @@ function App () {
 
   return (
     <div className="App">
+      <button onClick={() => {
+        setFormParams({
+          ...formParams,
+          formTypeClass: formParams?.formTypeClass === FormType.Default
+            ? FormType.Card : FormType.Default
+        })
+      }}>Toggle template</button>
       <div ref={appleContainerRef} />
       <Payment
         googlePayButtonParams={googlePayButtonParams}

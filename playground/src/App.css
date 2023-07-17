@@ -5,3 +5,7 @@
   align-items: center;
   justify-content: space-between;
 }
+
+button {
+  margin-top: auto;
+}

@@ -1,9 +1,11 @@
 import {
   FC,
+  useRef,
   useEffect,
+  useLayoutEffect,
   useState,
   RefObject,
-  memo, useLayoutEffect
+  memo,
 } from 'react'
 import styled from "styled-components"
 
@@ -41,6 +43,11 @@ const StyledPayment = styled.div`
 `
 
 const Payment: FC<PaymentProps> = (props) => {
+  const previousInitConfig = useRef<{
+    config: InitConfig
+    key: string
+  }>()
+
   const [sdkInstance, setSdkInstance] = useState<ClientSdkInstance | null>(null)
 
   const {
@@ -106,17 +113,27 @@ const Payment: FC<PaymentProps> = (props) => {
     return config
   }
 
-  const initClientSdk = async () => {
+  const initClientSdk = async (config: InitConfig) => {
     const clientSdk = await SdkLoader.load()
-
-    const initConfig = getInitConfig()
-    const clientSdkInstance = clientSdk.init(initConfig)
-    setSdkInstance(clientSdkInstance)
+    const clientSdkInstance = clientSdk.init(config)
+    if (!sdkInstance) {
+      setSdkInstance(clientSdkInstance)
+    }
   }
 
   useLayoutEffect(() => {
-    initClientSdk()
-  }, [])
+    const config = getInitConfig()
+    const key = JSON.stringify(config)
+
+    if (previousInitConfig.current?.key !== key) {
+      previousInitConfig.current = {
+        config,
+        key
+      }
+
+      initClientSdk(config)
+    }
+  })
 
   useEffect(() => {
     if (sdkInstance) {
