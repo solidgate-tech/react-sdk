@@ -8,14 +8,14 @@ npm install --save @solidgate/react-sdk
 
 ## Minimal example
 
-```typescript
+```tsx
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Payment from "@solidgate/react-sdk"
+import Payment, { SdkMessage, MessageType, ClientSdkInstance} from "@solidgate/react-sdk"
 
 /**
  * Configuration, as it described here
- * https://dev.solidgate.com/developers/documentation/solid-payment-form
+ * https://docs.solidgate.com/payments/integrate/payment-form/create-your-payment-form/
  */
 
 const merchantData = {
