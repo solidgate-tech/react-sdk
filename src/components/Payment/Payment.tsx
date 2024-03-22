@@ -55,6 +55,8 @@ const Payment: FC<PaymentProps> = (props) => {
     width,
     styles,
     formParams,
+    applePayButtonParams,
+    googlePayButtonParams,
     googlePayContainerRef,
     applePayContainerRef,
     onMounted = () => {},
@@ -85,6 +87,8 @@ const Payment: FC<PaymentProps> = (props) => {
       },
       ...(formParams && {formParams}),
       ...(styles && {styles}),
+      applePayButtonParams,
+      googlePayButtonParams
     }
 
     if (googlePayContainerRef?.current) {

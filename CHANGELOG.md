@@ -1,3 +1,10 @@
+**1.5.3**
+
+Fixed non-passing button params to the form in case of absence of the
+custom containers refs
+
+***
+
 **1.5.2**
 
 Added labels, placeholders types, fixed error type
