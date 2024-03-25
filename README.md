@@ -6,7 +6,9 @@
 npm install --save @solidgate/react-sdk
 ```
 
-## Minimal example
+## Examples
+
+### Payment form
 
 ```tsx
 import React from 'react'
@@ -90,6 +92,65 @@ const App = () => {
   
 ReactDOM.render(<App />, document.body);
 
+```
+
+### Resign form
+
+```tsx
+const resignRequest = {
+  merchant: '<<--YOUR MERCHANT ID-->>',
+  signature: '<<--YOUR SIGNATURE OF THE REQUEST-->>',
+  resignIntent: '<<--YOUR RESIGN INTENT-->>'
+}
+
+function App () {
+  const handleOnError = (e: SdkMessage[MessageType.Error]) => {}
+
+  const handleOnFail = (e: SdkMessage[MessageType.Fail]) => {}
+
+  const handleOnMounted = (e: SdkMessage[MessageType.Mounted]) => {}
+
+  const handleOrderStatus = (e: SdkMessage[MessageType.OrderStatus]) => {}
+
+  const handleOnResize = (e: SdkMessage[MessageType.Resize]) => {}
+
+  const handleOnSuccess = (e: SdkMessage[MessageType.Success]) => {}
+
+  const handleOnSubmit = (e: SdkMessage[MessageType.Submit]) => {}
+
+  const handleOnInteraction = (e: SdkMessage[MessageType.Interaction]) => {}
+
+  const handleOnVerify = (e: SdkMessage[MessageType.Verify]) => {}
+
+  const handleOnRedirectMessage = (e: SdkMessage[MessageType.Redirect]) => {}
+
+  const handleOnCustomStylesAppended = (e: SdkMessage[MessageType.CustomStylesAppended]) => {}
+
+  const handleOnReadyResignInstance = (form: ClientSdkInstance) => {
+    // eslint-disable-next-line no-console
+    console.log('resign form', form)
+  }
+
+  return (
+    <Resign
+      resignRequest={resignRequest}
+      appearance={appearanceConfig}
+      styles={customStyles}
+      onError={handleOnError}
+      onFail={handleOnFail}
+      onMounted={handleOnMounted}
+      onOrderStatus={handleOrderStatus}
+      onResize={handleOnResize}
+      onSuccess={handleOnSuccess}
+      onSubmit={handleOnSubmit}
+      onInteraction={handleOnInteraction}
+      onVerify={handleOnVerify}
+      onFormRedirect={handleOnRedirectMessage}
+      onCustomStylesAppended={handleOnCustomStylesAppended}
+      onReadyResignInstance={handleOnReadyResignInstance}
+    />
+  )
+}
 ```
 
 ## Build

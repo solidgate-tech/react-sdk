@@ -1,0 +1,9 @@
+.form {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 285px;
+  min-height: 384px;
+}

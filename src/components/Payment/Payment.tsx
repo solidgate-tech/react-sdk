@@ -19,7 +19,7 @@ import ClientSdkEventsProvider from "../../types/ClientSdkEventProvider"
 
 import { IFRAME_CONTAINER_ID } from '../../constants'
 
-import usePaymentSubscriptions from "./usePaymentSubscriptions"
+import usePaymentSubscriptions from "../hooks/usePaymentSubscriptions"
 
 import getPayButtonParams from "../../utils/getPayButtonParams"
 import '../../boot'

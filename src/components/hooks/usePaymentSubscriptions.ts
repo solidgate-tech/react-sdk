@@ -3,7 +3,7 @@ import {ClientSdkInstance, MessageType} from "@solidgate/client-sdk-loader"
 
 import clientSdkEventProvider from "../../types/ClientSdkEventProvider"
 
-export const usePaymentSubscriptions = (callbacks: clientSdkEventProvider, sdkInstance: ClientSdkInstance | null) => {
+export const usePaymentSubscriptions = (callbacks: Partial<clientSdkEventProvider>, sdkInstance: ClientSdkInstance | null) => {
   const {
     onMounted = () => {},
     onError = () => {},
