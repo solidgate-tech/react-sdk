@@ -31,6 +31,7 @@ interface ResignProps extends Partial<Omit<ClientSdkEventsProvider, 'onCard'>> {
   appearance?: NonNullable<ResignFormConfig['appearance']>,
   styles?: NonNullable<ResignFormConfig['styles']>,
   onReadyResignInstance?: (paymentInstance: ClientSdkInstance) => void
+  onResignInitFailed?: (error: Error) => void
 }
 
 const StyledPayment = styled.div`
@@ -64,6 +65,7 @@ const Resign: FC<ResignProps> = (props) => {
     onOrderStatus = () => {},
     onResize = () => {},
     onReadyResignInstance = () => {},
+    onResignInitFailed = () => {}
   } = props
 
   const getResignConfig = () => {
@@ -90,12 +92,16 @@ const Resign: FC<ResignProps> = (props) => {
   }
 
   const initClientSdk = useCallback(async (resignConfig: ResignConfig) => {
-    const clientSdk = await SdkLoader.load()
+    try {
+      const clientSdk = await SdkLoader.load()
 
     const clientSdkInstance = await clientSdk.resign(resignConfig.request, resignConfig.formConfig)
 
-    if (!sdkInstance) {
-      setSdkInstance(clientSdkInstance)
+      if (!sdkInstance) {
+        setSdkInstance(clientSdkInstance)
+      }
+    } catch (error) {
+      onResignInitFailed(error as Error);
     }
   }, [])
 
