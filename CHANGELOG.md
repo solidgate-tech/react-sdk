@@ -1,3 +1,10 @@
+**1.8.1**
+
+Update Order Status error interface:
+- `error.message: string` -> `error.messages: string[]`
+
+***
+
 **1.8.0**
 
 Add `onResignInitFailed` to Resign component to allow handling the case when the resign form initialization failed
