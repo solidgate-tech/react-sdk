@@ -21,7 +21,7 @@ import ResignConfig from "../../types/ResignConfig"
 
 import { IFRAME_CONTAINER_ID } from '../../constants'
 
-import usePaymentSubscriptions from "../hooks/usePaymentSubscriptions"
+import useResignSubscriptions from '../hooks/useResignSubscriptions'
 
 import '../../boot'
 
@@ -91,6 +91,20 @@ const Resign: FC<ResignProps> = (props) => {
     return result;
   }
 
+  const { subscribeListeners } = useResignSubscriptions({
+    onMounted,
+    onError,
+    onSuccess,
+    onFail,
+    onSubmit,
+    onVerify,
+    onCustomStylesAppended,
+    onFormRedirect,
+    onInteraction,
+    onOrderStatus,
+    onResize,
+  }, sdkInstance);
+
   const initClientSdk = useCallback(async (resignConfig: ResignConfig) => {
     try {
       const clientSdk = await SdkLoader.load()
@@ -98,6 +112,7 @@ const Resign: FC<ResignProps> = (props) => {
     const clientSdkInstance = await clientSdk.resign(resignConfig.request, resignConfig.formConfig)
 
       if (!sdkInstance) {
+        subscribeListeners(clientSdkInstance)
         setSdkInstance(clientSdkInstance)
       }
     } catch (error) {
@@ -124,20 +139,6 @@ const Resign: FC<ResignProps> = (props) => {
       onReadyResignInstance(sdkInstance)
     }
   }, [sdkInstance])
-
-  usePaymentSubscriptions({
-    onMounted,
-    onError,
-    onSuccess,
-    onFail,
-    onSubmit,
-    onVerify,
-    onCustomStylesAppended,
-    onFormRedirect,
-    onInteraction,
-    onOrderStatus,
-    onResize,
-  }, sdkInstance)
 
   return (
     <StyledPayment id={IFRAME_CONTAINER_ID}/>

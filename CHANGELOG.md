@@ -1,3 +1,9 @@
+**1.8.2**
+
+Fixed issue with `onMounted` event not being called in the resign form.
+
+***
+
 **1.8.1**
 
 Update Order Status error interface:
