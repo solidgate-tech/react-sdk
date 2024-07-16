@@ -1,3 +1,5 @@
+import { isBrowser } from '../utils/isBrowser'
+
 const sdkInitType = 'react'
 
 declare global {
@@ -6,6 +8,9 @@ declare global {
   }
 }
 
-window.__SOLIDGATE_PRIVATE__SDK_INIT_TYPE = sdkInitType
+if (isBrowser) {
+  window.__SOLIDGATE_PRIVATE__SDK_INIT_TYPE = sdkInitType
+}
+
 
 export {}

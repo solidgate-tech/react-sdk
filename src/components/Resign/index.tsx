@@ -1,10 +1,7 @@
 import {
-  FC,
   useRef,
   useEffect,
-  useLayoutEffect,
   useState,
-  memo,
   useCallback
 } from 'react'
 import styled from "styled-components"
@@ -24,6 +21,7 @@ import { IFRAME_CONTAINER_ID } from '../../constants'
 import useResignSubscriptions from '../hooks/useResignSubscriptions'
 
 import '../../boot'
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 
 interface ResignProps extends Partial<Omit<ClientSdkEventsProvider, 'onCard'>> {
   resignRequest: ResignRequest,
@@ -40,7 +38,7 @@ const StyledPayment = styled.div`
   }
 `
 
-const Resign: FC<ResignProps> = (props) => {
+const Resign = (props: ResignProps) => {
   const previousResignConfig = useRef<{
     config: ResignConfig
     key: string
@@ -109,9 +107,9 @@ const Resign: FC<ResignProps> = (props) => {
     try {
       const clientSdk = await SdkLoader.load()
 
-    const clientSdkInstance = await clientSdk.resign(resignConfig.request, resignConfig.formConfig)
+    const clientSdkInstance = await clientSdk?.resign(resignConfig.request, resignConfig.formConfig)
 
-      if (!sdkInstance) {
+      if (!sdkInstance && clientSdkInstance) {
         subscribeListeners(clientSdkInstance)
         setSdkInstance(clientSdkInstance)
       }
@@ -120,7 +118,7 @@ const Resign: FC<ResignProps> = (props) => {
     }
   }, [])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const config = getResignConfig()
     const key = JSON.stringify(config)
 
@@ -145,4 +143,6 @@ const Resign: FC<ResignProps> = (props) => {
   )
 }
 
-export default memo(Resign)
+Resign.displayName = 'Resign'
+
+export default Resign

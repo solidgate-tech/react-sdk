@@ -1,3 +1,9 @@
+**1.9.0**
+
+Enabled SSR compatability
+
+***
+
 **1.8.2**
 
 Fixed issue with `onMounted` event not being called in the resign form.

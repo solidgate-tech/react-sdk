@@ -1,14 +1,10 @@
 import {
-  FC,
   useRef,
   useEffect,
-  useLayoutEffect,
   useState,
   RefObject,
-  memo,
 } from 'react'
 import styled from "styled-components"
-
 import {
   ClientSdkInstance,
   InitConfig,
@@ -19,9 +15,11 @@ import ClientSdkEventsProvider from "../../types/ClientSdkEventProvider"
 
 import { IFRAME_CONTAINER_ID } from '../../constants'
 
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import usePaymentSubscriptions from "../hooks/usePaymentSubscriptions"
 
 import getPayButtonParams from "../../utils/getPayButtonParams"
+
 import '../../boot'
 
 interface PaymentProps extends Partial<ClientSdkEventsProvider> {
@@ -42,7 +40,7 @@ const StyledPayment = styled.div`
   }
 `
 
-const Payment: FC<PaymentProps> = (props) => {
+const Payment = (props: PaymentProps) => {
   const previousInitConfig = useRef<{
     config: InitConfig
     key: string
@@ -119,13 +117,13 @@ const Payment: FC<PaymentProps> = (props) => {
 
   const initClientSdk = async (config: InitConfig) => {
     const clientSdk = await SdkLoader.load()
-    const clientSdkInstance = clientSdk.init(config)
-    if (!sdkInstance) {
+    const clientSdkInstance = clientSdk?.init(config)
+    if (!sdkInstance && clientSdkInstance) {
       setSdkInstance(clientSdkInstance)
     }
   }
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const config = getInitConfig()
     const key = JSON.stringify(config)
 
@@ -165,4 +163,6 @@ const Payment: FC<PaymentProps> = (props) => {
   )
 }
 
-export default memo(Payment)
+Payment.displayName = 'Payment'
+
+export default Payment
