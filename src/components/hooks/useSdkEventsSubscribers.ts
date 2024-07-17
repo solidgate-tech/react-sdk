@@ -6,24 +6,7 @@ import {
 
 import clientSdkEventProvider from "../../types/ClientSdkEventProvider"
 
-type Callbacks = clientSdkEventProvider;
-
-type CallbacksMapping = {
-  [MessageType.Mounted]: Callbacks["onMounted"],
-  [MessageType.Error]: Callbacks["onError"],
-  [MessageType.Success]: Callbacks["onSuccess"],
-  [MessageType.Fail]: Callbacks["onFail"],
-  [MessageType.Submit]: Callbacks["onSubmit"],
-  [MessageType.Verify]: Callbacks["onVerify"],
-  [MessageType.CustomStylesAppended]: Callbacks["onCustomStylesAppended"],
-  [MessageType.Redirect]: Callbacks["onFormRedirect"],
-  [MessageType.Interaction]: Callbacks["onInteraction"],
-  [MessageType.OrderStatus]: Callbacks["onOrderStatus"],
-  [MessageType.Resize]: Callbacks["onResize"],
-  [MessageType.Card]: Callbacks["onCard"],
-}
-
-export const useSdkEventsSubscribers = (callbacks: Partial<Callbacks>, sdkInstance: ClientSdkInstance | null) => {
+export const useSdkEventsSubscribers = (callbacks: Partial<clientSdkEventProvider>, sdkInstance: ClientSdkInstance | null) => {
   const {
     onMounted = () => {},
     onError = () => {},
@@ -39,27 +22,27 @@ export const useSdkEventsSubscribers = (callbacks: Partial<Callbacks>, sdkInstan
     onCard = () => {},
   } = callbacks;
 
-  const updateCallbackRef = useCallback(<T extends MessageType>(callback: CallbacksMapping[T]): MutableRefObject<CallbacksMapping[T]> => {
+  const updateCallbackRef = <T>(callback: T): MutableRefObject<T> => {
     const callbackRef = useRef(callback);
 
     callbackRef.current = callback;
 
     return callbackRef;
-  }, []);
+  };
 
   const callbackRefs = {
-    [MessageType.Mounted]: updateCallbackRef<MessageType.Mounted>(onMounted),
-    [MessageType.Error]: updateCallbackRef<MessageType.Error>(onError),
-    [MessageType.Success]: updateCallbackRef<MessageType.Success>(onSuccess),
-    [MessageType.Fail]: updateCallbackRef<MessageType.Fail>(onFail),
-    [MessageType.Submit]: updateCallbackRef<MessageType.Submit>(onSubmit),
-    [MessageType.Verify]: updateCallbackRef<MessageType.Verify>(onVerify),
-    [MessageType.CustomStylesAppended]: updateCallbackRef<MessageType.CustomStylesAppended>(onCustomStylesAppended),
-    [MessageType.Redirect]: updateCallbackRef<MessageType.Redirect>(onFormRedirect),
-    [MessageType.Interaction]: updateCallbackRef<MessageType.Interaction>(onInteraction),
-    [MessageType.OrderStatus]: updateCallbackRef<MessageType.OrderStatus>(onOrderStatus),
-    [MessageType.Resize]: updateCallbackRef<MessageType.Resize>(onResize),
-    [MessageType.Card]: updateCallbackRef<MessageType.Card>(onCard),
+    [MessageType.Mounted]: updateCallbackRef(onMounted),
+    [MessageType.Error]: updateCallbackRef(onError),
+    [MessageType.Success]: updateCallbackRef(onSuccess),
+    [MessageType.Fail]: updateCallbackRef(onFail),
+    [MessageType.Submit]: updateCallbackRef(onSubmit),
+    [MessageType.Verify]: updateCallbackRef(onVerify),
+    [MessageType.CustomStylesAppended]: updateCallbackRef(onCustomStylesAppended),
+    [MessageType.Redirect]: updateCallbackRef(onFormRedirect),
+    [MessageType.Interaction]: updateCallbackRef(onInteraction),
+    [MessageType.OrderStatus]: updateCallbackRef(onOrderStatus),
+    [MessageType.Resize]: updateCallbackRef(onResize),
+    [MessageType.Card]: updateCallbackRef(onCard),
   }
 
   const subscribe = useCallback((sdkInstance: ClientSdkInstance) => {
