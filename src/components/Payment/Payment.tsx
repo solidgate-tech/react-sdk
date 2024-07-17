@@ -16,7 +16,7 @@ import ClientSdkEventsProvider from "../../types/ClientSdkEventProvider"
 import { IFRAME_CONTAINER_ID } from '../../constants'
 
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
-import usePaymentSubscriptions from "../hooks/usePaymentSubscriptions"
+import useSdkEventSubscribers from '../hooks/useSdkEventsSubscribers'
 
 import getPayButtonParams from "../../utils/getPayButtonParams"
 
@@ -115,10 +115,26 @@ const Payment = (props: PaymentProps) => {
     return config
   }
 
+  const subscribe = useSdkEventSubscribers({
+    onMounted,
+    onError,
+    onSuccess,
+    onFail,
+    onSubmit,
+    onVerify,
+    onCustomStylesAppended,
+    onFormRedirect,
+    onInteraction,
+    onOrderStatus,
+    onResize,
+    onCard,
+  }, sdkInstance)
+
   const initClientSdk = async (config: InitConfig) => {
     const clientSdk = await SdkLoader.load()
     const clientSdkInstance = clientSdk?.init(config)
     if (!sdkInstance && clientSdkInstance) {
+      subscribe(clientSdkInstance)
       setSdkInstance(clientSdkInstance)
     }
   }
@@ -142,21 +158,6 @@ const Payment = (props: PaymentProps) => {
       onReadyPaymentInstance(sdkInstance)
     }
   }, [sdkInstance])
-
-  usePaymentSubscriptions({
-    onMounted,
-    onError,
-    onSuccess,
-    onFail,
-    onSubmit,
-    onVerify,
-    onCustomStylesAppended,
-    onFormRedirect,
-    onInteraction,
-    onOrderStatus,
-    onResize,
-    onCard,
-  }, sdkInstance)
 
   return (
     <StyledPayment id={IFRAME_CONTAINER_ID}/>

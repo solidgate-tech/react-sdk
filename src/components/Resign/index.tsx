@@ -18,7 +18,7 @@ import ResignConfig from "../../types/ResignConfig"
 
 import { IFRAME_CONTAINER_ID } from '../../constants'
 
-import useResignSubscriptions from '../hooks/useResignSubscriptions'
+import useSdkEventSubscribers from '../hooks/useSdkEventsSubscribers'
 
 import '../../boot'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
@@ -89,7 +89,7 @@ const Resign = (props: ResignProps) => {
     return result;
   }
 
-  const { subscribeListeners } = useResignSubscriptions({
+  const subscribe = useSdkEventSubscribers({
     onMounted,
     onError,
     onSuccess,
@@ -110,7 +110,7 @@ const Resign = (props: ResignProps) => {
     const clientSdkInstance = await clientSdk?.resign(resignConfig.request, resignConfig.formConfig)
 
       if (!sdkInstance && clientSdkInstance) {
-        subscribeListeners(clientSdkInstance)
+        subscribe(clientSdkInstance)
         setSdkInstance(clientSdkInstance)
       }
     } catch (error) {

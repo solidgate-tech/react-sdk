@@ -1,3 +1,9 @@
+**1.9.1**
+
+Refined the event subscription mechanism for Form SDK events.
+
+***
+
 **1.9.0**
 
 Enabled SSR compatability
