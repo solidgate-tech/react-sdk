@@ -30,6 +30,7 @@ const App = () => {
 
   const appleContainerRef = useRef(null)
   const googleContainerRef = useRef(null)
+  const paypalContainerRef = useRef(null)
 
   const handleOnError = (e: SdkMessage[MessageType.Error]) => {}
 
@@ -63,11 +64,14 @@ const App = () => {
   return (
     <div>
       <div ref={appleContainerRef} />
+      <div ref={paypalContainerRef} />
       <Payment
           googlePayButtonParams={googlePayButtonParams}
           applePayButtonParams={applePayButtonParams}
+          paypalButtonParams={paypalButtonParams}
           googlePayContainerRef={googleContainerRef}
           applePayContainerRef={appleContainerRef}
+          paypalContainerRef={paypalContainerRef}
           merchantData={merchantData}
           styles={customFormStyles}
           formParams={formParams}

@@ -2,8 +2,9 @@ import { InitConfig } from "@solidgate/client-sdk-loader"
 
 import {
   GOOGLE_PAY_BUTTON_CONTAINER_ID,
-  APPLE_PAY_BUTTON_CONTAINER_ID
-} from "../constants"
+  APPLE_PAY_BUTTON_CONTAINER_ID,
+  PAYPAL_BUTTON_CONTAINER_ID
+} from '../constants'
 
 const payButtonIds = {
   googlePayButtonParams: {
@@ -13,10 +14,14 @@ const payButtonIds = {
   applePayButtonParams: {
     title: 'ApplePay',
     id: APPLE_PAY_BUTTON_CONTAINER_ID
+  },
+  paypalButtonParams: {
+    title: 'PayPal',
+    id: PAYPAL_BUTTON_CONTAINER_ID
   }
 }
 
-const getPayButtonParams = <T extends 'googlePayButtonParams' | 'applePayButtonParams'> (
+const getPayButtonParams = <T extends 'googlePayButtonParams' | 'applePayButtonParams' | 'paypalButtonParams'> (
     config: InitConfig,
     key: T,
     container: HTMLDivElement | null

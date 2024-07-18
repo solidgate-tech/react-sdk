@@ -29,9 +29,11 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   formParams?: InitConfig['formParams']
   googlePayButtonParams?: Omit<InitConfig['googlePayButtonParams'], 'containerId'>
   applePayButtonParams?: Omit<InitConfig['applePayButtonParams'], 'containerId'>
+  paypalButtonParams?: Omit<InitConfig['paypalButtonParams'], 'containerId'>
   onReadyPaymentInstance?: (paymentInstance: ClientSdkInstance) => void
   googlePayContainerRef?: RefObject<HTMLDivElement>
   applePayContainerRef?: RefObject<HTMLDivElement>
+  paypalContainerRef?: RefObject<HTMLDivElement>
 }
 
 const StyledPayment = styled.div`
@@ -55,8 +57,10 @@ const Payment = (props: PaymentProps) => {
     formParams,
     applePayButtonParams,
     googlePayButtonParams,
+    paypalButtonParams,
     googlePayContainerRef,
     applePayContainerRef,
+    paypalContainerRef,
     onMounted = () => {},
     onError = () => {},
     onSuccess = () => {},
@@ -86,7 +90,8 @@ const Payment = (props: PaymentProps) => {
       ...(formParams && {formParams}),
       ...(styles && {styles}),
       applePayButtonParams,
-      googlePayButtonParams
+      googlePayButtonParams,
+      paypalButtonParams
     }
 
     if (googlePayContainerRef?.current) {
@@ -109,6 +114,17 @@ const Payment = (props: PaymentProps) => {
       )
       if (appleButtonParams) {
         config.applePayButtonParams = appleButtonParams
+      }
+    }
+
+    if (paypalContainerRef?.current) {
+      const paypalButtonParams = getPayButtonParams(
+        props,
+        'paypalButtonParams',
+        paypalContainerRef.current
+      )
+      if (paypalButtonParams) {
+        config.paypalButtonParams = paypalButtonParams
       }
     }
 
