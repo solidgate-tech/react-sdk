@@ -20,8 +20,9 @@ const googlePayButtonParams = {
   color: 'white'
 }
 
-const applePayButtonParams = {
+const applePayButtonParams: InitConfig["applePayButtonParams"] = {
   // color: 'white-outline',
+  integrationType: 'js',
   type: 'plain'
 }
 

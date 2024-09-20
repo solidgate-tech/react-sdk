@@ -20,6 +20,7 @@ export const useSdkEventsSubscribers = (callbacks: Partial<clientSdkEventProvide
     onOrderStatus = () => {},
     onResize = () => {},
     onCard = () => {},
+    onPaymentDetails = () => {},
   } = callbacks;
 
   const updateCallbackRef = <T>(callback: T): MutableRefObject<T> => {
@@ -43,6 +44,7 @@ export const useSdkEventsSubscribers = (callbacks: Partial<clientSdkEventProvide
     [MessageType.OrderStatus]: updateCallbackRef(onOrderStatus),
     [MessageType.Resize]: updateCallbackRef(onResize),
     [MessageType.Card]: updateCallbackRef(onCard),
+    [MessageType.PaymentDetails]: updateCallbackRef(onPaymentDetails),
   }
 
   const subscribe = useCallback((sdkInstance: ClientSdkInstance) => {
@@ -58,6 +60,7 @@ export const useSdkEventsSubscribers = (callbacks: Partial<clientSdkEventProvide
     sdkInstance.on(MessageType.OrderStatus, (e) => callbackRefs[MessageType.OrderStatus].current(e.data));
     sdkInstance.on(MessageType.Resize, (e) => callbackRefs[MessageType.Resize].current(e.data));
     sdkInstance.on(MessageType.Card, (e) => callbackRefs[MessageType.Card].current(e.data));
+    sdkInstance.on(MessageType.PaymentDetails, (e) => callbackRefs[MessageType.PaymentDetails].current(e.data));
   }, []);
 
   const unsubscribe = useCallback((sdkInstance: ClientSdkInstance) => {
