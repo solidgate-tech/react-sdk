@@ -1,3 +1,7 @@
+**1.11.1**
+
+**PaymentDetails** event for the Resign form
+
 **1.11.0**
 
 **ApplePay** js integration (see [ApplePay](https://docs.solidgate.com/payments/integrate/payment-form/apple-pay/))
