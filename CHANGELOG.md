@@ -1,3 +1,7 @@
+**1.12.0**
+
+Added **priceBreakdown.taxRate** float to **PaymentDetails** event
+
 **1.11.1**
 
 **PaymentDetails** event for the Resign form
