@@ -35,6 +35,8 @@ Check our
   </tr>
 </table>
 
+<br>
+
 ## Installation
 
 Run the following command in your React project:
@@ -42,6 +44,8 @@ Run the following command in your React project:
 ```
 npm install --save @solidgate/react-sdk
 ```
+
+<br>
 
 ## Usage
 
@@ -198,12 +202,16 @@ function App () {
 }
 ```
 
+<br>
+
 ## Development server
 
 1. `cd playground`
 2. `npm i`
 3. `npm run start`
 4. `Navigate to http://localhost:3000/`
+
+<br>
 
 ## Build
 
