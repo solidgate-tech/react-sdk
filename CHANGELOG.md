@@ -1,3 +1,7 @@
+**1.15.0**
+
+Add support for React v19
+
 **1.14.1**
 
 Updated `README.md`
