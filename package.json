@@ -1,7 +1,7 @@
 {
   "name": "@solidgate/react-sdk",
   "repository": "https://github.com/solidgate-tech/react-sdk",
-  "version": "1.16.0",
+  "version": "1.16.1",
   "license": "Apache-2.0",
   "author": "Solidgate",
   "description": "Solidgate react sdk loader",
