@@ -1,3 +1,7 @@
+**1.17.1**
+
+Added **applyCoupon** type declaration to **ClientSdkInstance** interface
+
 **1.17.0**
 
 Added the ability to override the **SDK** script `src` via `SdkLoader.load(url)` call.
