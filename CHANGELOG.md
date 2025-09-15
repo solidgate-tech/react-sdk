@@ -1,3 +1,7 @@
+**1.18.0**
+
+Added **binCountry** to the **card** field of **Card** event
+
 **1.17.1**
 
 Added **applyCoupon** type declaration to **ClientSdkInstance** interface
