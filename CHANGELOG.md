@@ -1,3 +1,7 @@
+**1.19.0**
+
+Added **pix** to the **name** field of **InteractionMessage** event
+
 **1.18.0**
 
 Added **binCountry** to the **card** field of **Card** event
