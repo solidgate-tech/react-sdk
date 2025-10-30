@@ -1,7 +1,7 @@
 {
   "name": "@solidgate/react-sdk",
   "repository": "https://github.com/solidgate-tech/react-sdk",
-  "version": "1.20.0",
+  "version": "1.21.0",
   "license": "Apache-2.0",
   "author": "Solidgate",
   "description": "Solidgate react sdk loader",
@@ -12,7 +12,7 @@
     "dist"
   ],
   "dependencies": {
-    "@solidgate/client-sdk-loader": "^1.20.0",
+    "@solidgate/client-sdk-loader": "^1.21.0",
     "styled-components": "^5.3.3"
   },
   "scripts": {
