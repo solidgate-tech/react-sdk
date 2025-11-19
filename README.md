@@ -221,17 +221,5 @@ The build artifacts will be stored in the `dist/` directory.
 
 ---
 
-<div style="display: flex; flex-direction: column; gap: 3px; max-width: 400px;">
-  <div style="display: flex; align-items: center; gap: 5px;">
-    <svg width="15" height="15" viewBox="0 -1 24 24" xmlns="http://www.w3.org/2000/svg">        <path d="M3 3h18v12H6l-3 3V3z" stroke="#808080" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span style="font-size: 14px;">Looking for help? <a href="https://support.solidgate.com/support/tickets/new" target="_blank">Contact us</a></span>
-  </div>
-  <div style="display: flex; align-items: center; gap: 5px;">
-    <svg width="15" height="12" viewBox="0 1 21 19" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 12L4.5 15.5L14 6" stroke="#808080" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M6 13L9.5 16.5L19 7" stroke="#000000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span style="font-size: 14px;">Want to contribute? <a href="https://github.com/solidgate-tech/react-sdk/pulls" target="_blank">Submit a pull request</a></span>
-  </div>
-</div>
+Looking for help? <a href="https://support.solidgate.com/support/tickets/new" target="_blank">Contact us</a> <br>
+Want to contribute? <a href="https://github.com/solidgate-tech/angular-sdk/pulls" target="_blank">Submit a pull request</a>
