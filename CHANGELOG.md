@@ -1,3 +1,7 @@
+**1.22.0**
+
+Added `pixButtonParams` and `pixContainerRef` to the `Payment` component props to allow to enable and configure the Pix button.
+
 **1.21.0**
 
 Added **cardCategory** to the **card** field of **Card** event
