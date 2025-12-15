@@ -25,7 +25,7 @@ const initialAppearance: NonNullable<ResignFormConfig['appearance']> = {
 }
 
 const customFormStyles = {
-  submit_button: {
+  "resign-submit-button": {
     'background-color': 'green',
     'font-size': '16px',
     'font-weight': 'bold',

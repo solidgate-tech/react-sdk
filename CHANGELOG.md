@@ -1,3 +1,7 @@
+**1.23.1**
+
+Fixed `customFormStyles` example for `ResignForm` in **playground**
+
 **1.23.0**
 
 Added `bizumButtonParams` and `bizumContainer` to the `Payment` component input properties to allow to enable and configure the Bizum
