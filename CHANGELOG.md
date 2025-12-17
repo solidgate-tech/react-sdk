@@ -1,3 +1,7 @@
+**1.24.0**
+
+Added **pageClose** type to the **InteractionType** enum
+
 **1.23.1**
 
 Fixed `customFormStyles` example for `ResignForm` in **playground**
