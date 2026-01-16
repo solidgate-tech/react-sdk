@@ -5,7 +5,8 @@ import {
   APPLE_PAY_BUTTON_CONTAINER_ID,
   PAYPAL_BUTTON_CONTAINER_ID,
   PIX_BUTTON_CONTAINER_ID,
-  BIZUM_BUTTON_CONTAINER_ID
+  BIZUM_BUTTON_CONTAINER_ID,
+  BLIK_BUTTON_CONTAINER_ID
 } from '../constants'
 
 const payButtonIds = {
@@ -28,10 +29,14 @@ const payButtonIds = {
   bizumButtonParams: {
     title: 'Bizum',
     id: BIZUM_BUTTON_CONTAINER_ID
+  },
+  blikButtonParams: {
+    title: 'Blik',
+    id: BLIK_BUTTON_CONTAINER_ID
   }
 }
 
-const getPayButtonParams = <T extends 'googlePayButtonParams' | 'applePayButtonParams' | 'paypalButtonParams' | 'pixButtonParams' | 'bizumButtonParams'> (
+const getPayButtonParams = <T extends 'googlePayButtonParams' | 'applePayButtonParams' | 'paypalButtonParams' | 'pixButtonParams' | 'bizumButtonParams' | 'blikButtonParams'> (
     config: InitConfig,
     key: T,
     container: HTMLDivElement | null

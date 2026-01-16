@@ -32,12 +32,14 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   paypalButtonParams?: Omit<InitConfig['paypalButtonParams'], 'containerId'>
   pixButtonParams?: Omit<InitConfig['pixButtonParams'], 'containerId'>
   bizumButtonParams?: Omit<InitConfig['bizumButtonParams'], 'containerId'>
+  blikButtonParams?: Omit<InitConfig['blikButtonParams'], 'containerId'>
   onReadyPaymentInstance?: (paymentInstance: ClientSdkInstance) => void
   googlePayContainerRef?: RefObject<HTMLDivElement | null>
   applePayContainerRef?: RefObject<HTMLDivElement | null>
   paypalContainerRef?: RefObject<HTMLDivElement | null>
   pixContainerRef?: RefObject<HTMLDivElement | null>
   bizumContainerRef?: RefObject<HTMLDivElement | null>
+  blikContainerRef?: RefObject<HTMLDivElement | null>
 }
 
 const StyledPayment = styled.div`
@@ -64,11 +66,13 @@ const Payment = (props: PaymentProps) => {
     paypalButtonParams,
     pixButtonParams,
     bizumButtonParams,
+    blikButtonParams,
     googlePayContainerRef,
     applePayContainerRef,
     paypalContainerRef,
     pixContainerRef,
     bizumContainerRef,
+    blikContainerRef,
     onMounted = () => {},
     onError = () => {},
     onSuccess = () => {},
@@ -102,7 +106,8 @@ const Payment = (props: PaymentProps) => {
       googlePayButtonParams,
       paypalButtonParams,
       pixButtonParams,
-      bizumButtonParams
+      bizumButtonParams,
+      blikButtonParams,
     }
 
     if (googlePayContainerRef?.current) {
@@ -159,6 +164,17 @@ const Payment = (props: PaymentProps) => {
       )
       if (bizumButtonParams) {
         config.bizumButtonParams = bizumButtonParams
+      }
+    }
+
+    if (blikContainerRef?.current) {
+      const blikButtonParams = getPayButtonParams(
+        props,
+        'blikButtonParams',
+        blikContainerRef.current
+      )
+      if (blikButtonParams) {
+        config.blikButtonParams = blikButtonParams
       }
     }
 
