@@ -54,8 +54,8 @@ npm install --save @solidgate/react-sdk
 Render a <a href="https://docs.solidgate.com/payments/integrate/payment-form/create-your-payment-form/" target="_blank">payment form</a> component in your React project.
 
 ```tsx
-import React from 'react'
-import ReactDOM from 'react-dom';
+import React, { useRef } from 'react'
+import { createRoot } from 'react-dom/client'
 import Payment, { SdkMessage, MessageType, ClientSdkInstance} from "@solidgate/react-sdk"
 
 /**
@@ -64,11 +64,11 @@ import Payment, { SdkMessage, MessageType, ClientSdkInstance} from "@solidgate/r
  */
 
 const merchantData = {
-    merchant: '<<--YOUR MERCHANT ID-->>',
-    signature: '<<--YOUR SIGNATURE OF THE REQUEST-->>',
-    paymentIntent: '<<--YOUR PAYMENT INTENT-->>'
-  }
-  
+  merchant: '<<--YOUR MERCHANT ID-->>',
+  signature: '<<--YOUR SIGNATURE OF THE REQUEST-->>',
+  paymentIntent: '<<--YOUR PAYMENT INTENT-->>'
+}
+
 const App = () => {
 
   const appleContainerRef = useRef(null)
@@ -96,9 +96,9 @@ const App = () => {
   const handleOnRedirectMessage = (e: SdkMessage[MessageType.Redirect]) => {}
 
   const handleOnCustomStylesAppended = (e: SdkMessage[MessageType.CustomStylesAppended]) => {}
-  
+
   const handleCard = (e: SdkMessage[MessageType.Card]) => {}
-  
+
   const handleOnReadyPaymentInstance = (form: ClientSdkInstance) => {
     // eslint-disable-next-line no-console
     console.log('form', form)
@@ -109,35 +109,39 @@ const App = () => {
       <div ref={appleContainerRef} />
       <div ref={paypalContainerRef} />
       <Payment
-          googlePayButtonParams={googlePayButtonParams}
-          applePayButtonParams={applePayButtonParams}
-          paypalButtonParams={paypalButtonParams}
-          googlePayContainerRef={googleContainerRef}
-          applePayContainerRef={appleContainerRef}
-          paypalContainerRef={paypalContainerRef}
-          merchantData={merchantData}
-          styles={customFormStyles}
-          formParams={formParams}
-          onError={handleOnError}
-          onFail={handleOnFail}
-          onCard={handleCard}
-          onMounted={handleOnMounted}
-          onOrderStatus={handleOrderStatus}
-          onResize={handleOnResize}
-          onSuccess={handleOnSuccess}
-          onSubmit={handleOnSubmit}
-          onInteraction={handleOnInteraction}
-          onVerify={handleOnVerify}
-          onFormRedirect={handleOnRedirectMessage}
-          onCustomStylesAppended={handleOnCustomStylesAppended}
-          onReadyPaymentInstance={handleOnReadyPaymentInstance}
+        googlePayButtonParams={googlePayButtonParams}
+        applePayButtonParams={applePayButtonParams}
+        paypalButtonParams={paypalButtonParams}
+        googlePayContainerRef={googleContainerRef}
+        applePayContainerRef={appleContainerRef}
+        paypalContainerRef={paypalContainerRef}
+        merchantData={merchantData}
+        styles={customFormStyles}
+        formParams={formParams}
+        onError={handleOnError}
+        onFail={handleOnFail}
+        onCard={handleCard}
+        onMounted={handleOnMounted}
+        onOrderStatus={handleOrderStatus}
+        onResize={handleOnResize}
+        onSuccess={handleOnSuccess}
+        onSubmit={handleOnSubmit}
+        onInteraction={handleOnInteraction}
+        onVerify={handleOnVerify}
+        onFormRedirect={handleOnRedirectMessage}
+        onCustomStylesAppended={handleOnCustomStylesAppended}
+        onReadyPaymentInstance={handleOnReadyPaymentInstance}
       />
       <div ref={googleContainerRef} />
     </div>
   )
 }
-  
-ReactDOM.render(<App />, document.body);
+
+createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
 
 ```
 
