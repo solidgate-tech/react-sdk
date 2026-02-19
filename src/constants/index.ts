@@ -5,6 +5,7 @@ const PAYPAL_BUTTON_CONTAINER_ID = `paypal-button-container_#123`
 const PIX_BUTTON_CONTAINER_ID = `pix-button-container_#123`
 const BIZUM_BUTTON_CONTAINER_ID = `bizum-button-container_#123`
 const BLIK_BUTTON_CONTAINER_ID = `blik-button-container_#123`
+const MBWAY_BUTTON_CONTAINER_ID = `mbway-button-container_#123`
 
 export {
   IFRAME_CONTAINER_ID,
@@ -13,5 +14,6 @@ export {
   PAYPAL_BUTTON_CONTAINER_ID,
   PIX_BUTTON_CONTAINER_ID,
   BIZUM_BUTTON_CONTAINER_ID,
-  BLIK_BUTTON_CONTAINER_ID
+  BLIK_BUTTON_CONTAINER_ID,
+  MBWAY_BUTTON_CONTAINER_ID
 }
