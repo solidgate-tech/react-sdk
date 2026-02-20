@@ -31,6 +31,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   applePayButtonParams?: Omit<InitConfig['applePayButtonParams'], 'containerId'>
   paypalButtonParams?: Omit<InitConfig['paypalButtonParams'], 'containerId'>
   pixButtonParams?: Omit<InitConfig['pixButtonParams'], 'containerId'>
+  pixQrButtonParams?: Omit<InitConfig['pixQrButtonParams'], 'containerId'>
   bizumButtonParams?: Omit<InitConfig['bizumButtonParams'], 'containerId'>
   blikButtonParams?: Omit<InitConfig['blikButtonParams'], 'containerId'>
   mbwayButtonParams?: Omit<InitConfig['mbwayButtonParams'], 'containerId'>
@@ -39,6 +40,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   applePayContainerRef?: RefObject<HTMLDivElement | null>
   paypalContainerRef?: RefObject<HTMLDivElement | null>
   pixContainerRef?: RefObject<HTMLDivElement | null>
+  pixQrContainerRef?: RefObject<HTMLDivElement | null>
   bizumContainerRef?: RefObject<HTMLDivElement | null>
   blikContainerRef?: RefObject<HTMLDivElement | null>
   mbwayContainerRef?: RefObject<HTMLDivElement | null>
@@ -67,6 +69,7 @@ const Payment = (props: PaymentProps) => {
     googlePayButtonParams,
     paypalButtonParams,
     pixButtonParams,
+    pixQrButtonParams,
     bizumButtonParams,
     blikButtonParams,
     mbwayButtonParams,
@@ -74,6 +77,7 @@ const Payment = (props: PaymentProps) => {
     applePayContainerRef,
     paypalContainerRef,
     pixContainerRef,
+    pixQrContainerRef,
     bizumContainerRef,
     blikContainerRef,
     mbwayContainerRef,
@@ -110,6 +114,7 @@ const Payment = (props: PaymentProps) => {
       googlePayButtonParams,
       paypalButtonParams,
       pixButtonParams,
+      pixQrButtonParams,
       bizumButtonParams,
       blikButtonParams,
       mbwayButtonParams,
@@ -158,6 +163,18 @@ const Payment = (props: PaymentProps) => {
 
       if (pixButtonParams) {
         config.pixButtonParams = pixButtonParams
+      }
+    }
+
+    if (pixQrContainerRef?.current) {
+      const pixQrButtonParams = getPayButtonParams(
+        props,
+        'pixQrButtonParams',
+        pixQrContainerRef.current
+      )
+
+      if (pixQrButtonParams) {
+        config.pixQrButtonParams = pixQrButtonParams
       }
     }
 
