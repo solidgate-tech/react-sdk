@@ -35,6 +35,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   bizumButtonParams?: Omit<InitConfig['bizumButtonParams'], 'containerId'>
   blikButtonParams?: Omit<InitConfig['blikButtonParams'], 'containerId'>
   mbwayButtonParams?: Omit<InitConfig['mbwayButtonParams'], 'containerId'>
+  cashAppButtonParams?: Omit<InitConfig['cashAppButtonParams'], 'containerId'>
   onReadyPaymentInstance?: (paymentInstance: ClientSdkInstance) => void
   googlePayContainerRef?: RefObject<HTMLDivElement | null>
   applePayContainerRef?: RefObject<HTMLDivElement | null>
@@ -44,6 +45,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   bizumContainerRef?: RefObject<HTMLDivElement | null>
   blikContainerRef?: RefObject<HTMLDivElement | null>
   mbwayContainerRef?: RefObject<HTMLDivElement | null>
+  cashAppContainerRef?: RefObject<HTMLDivElement | null>
 }
 
 const StyledPayment = styled.div`
@@ -73,6 +75,7 @@ const Payment = (props: PaymentProps) => {
     bizumButtonParams,
     blikButtonParams,
     mbwayButtonParams,
+    cashAppButtonParams,
     googlePayContainerRef,
     applePayContainerRef,
     paypalContainerRef,
@@ -81,6 +84,7 @@ const Payment = (props: PaymentProps) => {
     bizumContainerRef,
     blikContainerRef,
     mbwayContainerRef,
+    cashAppContainerRef,
     onMounted = () => {},
     onError = () => {},
     onSuccess = () => {},
@@ -118,6 +122,7 @@ const Payment = (props: PaymentProps) => {
       bizumButtonParams,
       blikButtonParams,
       mbwayButtonParams,
+      cashAppButtonParams,
     }
 
     if (googlePayContainerRef?.current) {
@@ -208,6 +213,17 @@ const Payment = (props: PaymentProps) => {
       )
       if (mbwayButtonParams) {
         config.mbwayButtonParams = mbwayButtonParams
+      }
+    }
+
+    if (cashAppContainerRef?.current) {
+      const cashAppButtonParams = getPayButtonParams(
+        props,
+        'cashAppButtonParams',
+        cashAppContainerRef.current
+      )
+      if (cashAppButtonParams) {
+        config.cashAppButtonParams = cashAppButtonParams
       }
     }
 
