@@ -36,6 +36,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   blikButtonParams?: Omit<InitConfig['blikButtonParams'], 'containerId'>
   mbwayButtonParams?: Omit<InitConfig['mbwayButtonParams'], 'containerId'>
   cashAppButtonParams?: Omit<InitConfig['cashAppButtonParams'], 'containerId'>
+  pixAutomaticoButtonParams?: Omit<InitConfig['pixAutomaticoButtonParams'], 'containerId'>
   onReadyPaymentInstance?: (paymentInstance: ClientSdkInstance) => void
   googlePayContainerRef?: RefObject<HTMLDivElement | null>
   applePayContainerRef?: RefObject<HTMLDivElement | null>
@@ -46,6 +47,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   blikContainerRef?: RefObject<HTMLDivElement | null>
   mbwayContainerRef?: RefObject<HTMLDivElement | null>
   cashAppContainerRef?: RefObject<HTMLDivElement | null>
+  pixAutomaticoContainerRef?: RefObject<HTMLDivElement | null>
 }
 
 const StyledPayment = styled.div`
@@ -76,6 +78,7 @@ const Payment = (props: PaymentProps) => {
     blikButtonParams,
     mbwayButtonParams,
     cashAppButtonParams,
+    pixAutomaticoButtonParams,
     googlePayContainerRef,
     applePayContainerRef,
     paypalContainerRef,
@@ -85,6 +88,7 @@ const Payment = (props: PaymentProps) => {
     blikContainerRef,
     mbwayContainerRef,
     cashAppContainerRef,
+    pixAutomaticoContainerRef,
     onMounted = () => {},
     onError = () => {},
     onSuccess = () => {},
@@ -123,6 +127,7 @@ const Payment = (props: PaymentProps) => {
       blikButtonParams,
       mbwayButtonParams,
       cashAppButtonParams,
+      pixAutomaticoButtonParams,
     }
 
     if (googlePayContainerRef?.current) {
@@ -224,6 +229,17 @@ const Payment = (props: PaymentProps) => {
       )
       if (cashAppButtonParams) {
         config.cashAppButtonParams = cashAppButtonParams
+      }
+    }
+
+    if (pixAutomaticoContainerRef?.current) {
+      const pixAutomaticoParams = getPayButtonParams(
+        props,
+        'pixAutomaticoButtonParams',
+        pixAutomaticoContainerRef.current
+      )
+      if (pixAutomaticoParams) {
+        config.pixAutomaticoButtonParams = pixAutomaticoParams
       }
     }
 
