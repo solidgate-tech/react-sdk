@@ -1,3 +1,9 @@
+**1.32.0**
+
+Added **reset mode** support for APM buttons:
+- Added `ResetRequested` to the `InteractionType` enum (emitted via the existing `interaction` event)
+- Added `resetEnabled` flag to `pixButtonParams`, `pixQrButtonParams`, `pixAutomaticoButtonParams`, and `blikButtonParams` props of the `Payment` component
+
 **1.31.0**
 
 Added `pixAutomaticoButtonParams` and `pixAutomaticoContainerRef` to the `Payment` component input properties to allow enabling and configuring Pix Automático
