@@ -2,7 +2,7 @@
 
 This repository is a React wrapper for the Solidgate Client Software Development Kit (SDK).
 
-It supports rendering payment forms and resign forms, including custom container elements for <a href="https://docs.solidgate.com/payments/integrate/payment-form/google-pay-button/" target="_blank">Google Pay</a>, <a href="https://docs.solidgate.com/payments/integrate/payment-form/apple-pay-button/" target="_blank">Apple Pay</a>, or alternative payment method (<a href="https://docs.solidgate.com/payments/integrate/payment-form/apm-buttons/" target="_blank">APM</a>) buttons (PayPal, Pix, Pix QR, Bizum, Blik, MB WAY).
+It supports rendering payment forms and resign forms, including custom container elements for <a href="https://docs.solidgate.com/payments/integrate/payment-form/google-pay-button/" target="_blank">Google Pay</a>, <a href="https://docs.solidgate.com/payments/integrate/payment-form/apple-pay-button/" target="_blank">Apple Pay</a>, or alternative payment method (<a href="https://docs.solidgate.com/payments/integrate/payment-form/apm-buttons/" target="_blank">APM</a>) buttons (PayPal, Pix, UPI, Pix QR, Bizum, Blik, MB WAY).
 
 Check our
 * <a href="https://docs.solidgate.com/" target="_blank">Payment guide</a> to understand business value better

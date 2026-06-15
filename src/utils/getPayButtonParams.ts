@@ -5,6 +5,7 @@ import {
   APPLE_PAY_BUTTON_CONTAINER_ID,
   PAYPAL_BUTTON_CONTAINER_ID,
   PIX_BUTTON_CONTAINER_ID,
+  UPI_BUTTON_CONTAINER_ID,
   PIX_QR_BUTTON_CONTAINER_ID,
   BIZUM_BUTTON_CONTAINER_ID,
   BLIK_BUTTON_CONTAINER_ID,
@@ -29,6 +30,10 @@ const payButtonIds = {
   pixButtonParams: {
     title: 'Pix',
     id: PIX_BUTTON_CONTAINER_ID
+  },
+  upiButtonParams: {
+    title: 'UPI',
+    id: UPI_BUTTON_CONTAINER_ID
   },
   pixQrButtonParams: {
     title: 'Pix QR',
@@ -56,7 +61,7 @@ const payButtonIds = {
   }
 }
 
-const getPayButtonParams = <T extends 'googlePayButtonParams' | 'applePayButtonParams' | 'paypalButtonParams' | 'pixButtonParams'  | 'pixQrButtonParams' | 'bizumButtonParams' | 'blikButtonParams' | 'mbwayButtonParams' | 'cashAppButtonParams' | 'pixAutomaticoButtonParams'> (
+const getPayButtonParams = <T extends 'googlePayButtonParams' | 'applePayButtonParams' | 'paypalButtonParams' | 'pixButtonParams' | 'upiButtonParams'  | 'pixQrButtonParams' | 'bizumButtonParams' | 'blikButtonParams' | 'mbwayButtonParams' | 'cashAppButtonParams' | 'pixAutomaticoButtonParams'> (
     config: InitConfig,
     key: T,
     container: HTMLDivElement | null

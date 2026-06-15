@@ -31,6 +31,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   applePayButtonParams?: Omit<InitConfig['applePayButtonParams'], 'containerId'>
   paypalButtonParams?: Omit<InitConfig['paypalButtonParams'], 'containerId'>
   pixButtonParams?: Omit<InitConfig['pixButtonParams'], 'containerId'>
+  upiButtonParams?: Omit<InitConfig['upiButtonParams'], 'containerId'>
   pixQrButtonParams?: Omit<InitConfig['pixQrButtonParams'], 'containerId'>
   bizumButtonParams?: Omit<InitConfig['bizumButtonParams'], 'containerId'>
   blikButtonParams?: Omit<InitConfig['blikButtonParams'], 'containerId'>
@@ -42,6 +43,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   applePayContainerRef?: RefObject<HTMLDivElement | null>
   paypalContainerRef?: RefObject<HTMLDivElement | null>
   pixContainerRef?: RefObject<HTMLDivElement | null>
+  upiContainerRef?: RefObject<HTMLDivElement | null>
   pixQrContainerRef?: RefObject<HTMLDivElement | null>
   bizumContainerRef?: RefObject<HTMLDivElement | null>
   blikContainerRef?: RefObject<HTMLDivElement | null>
@@ -73,6 +75,7 @@ const Payment = (props: PaymentProps) => {
     googlePayButtonParams,
     paypalButtonParams,
     pixButtonParams,
+    upiButtonParams,
     pixQrButtonParams,
     bizumButtonParams,
     blikButtonParams,
@@ -83,6 +86,7 @@ const Payment = (props: PaymentProps) => {
     applePayContainerRef,
     paypalContainerRef,
     pixContainerRef,
+    upiContainerRef,
     pixQrContainerRef,
     bizumContainerRef,
     blikContainerRef,
@@ -122,6 +126,7 @@ const Payment = (props: PaymentProps) => {
       googlePayButtonParams,
       paypalButtonParams,
       pixButtonParams,
+      upiButtonParams,
       pixQrButtonParams,
       bizumButtonParams,
       blikButtonParams,
@@ -173,6 +178,18 @@ const Payment = (props: PaymentProps) => {
 
       if (pixButtonParams) {
         config.pixButtonParams = pixButtonParams
+      }
+    }
+
+    if (upiContainerRef?.current) {
+      const upiButtonParams = getPayButtonParams(
+        props,
+        'upiButtonParams',
+        upiContainerRef.current
+      )
+
+      if (upiButtonParams) {
+        config.upiButtonParams = upiButtonParams
       }
     }
 
