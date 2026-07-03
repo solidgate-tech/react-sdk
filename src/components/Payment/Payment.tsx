@@ -38,6 +38,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   mbwayButtonParams?: Omit<InitConfig['mbwayButtonParams'], 'containerId'>
   cashAppButtonParams?: Omit<InitConfig['cashAppButtonParams'], 'containerId'>
   pixAutomaticoButtonParams?: Omit<InitConfig['pixAutomaticoButtonParams'], 'containerId'>
+  clickToPayButtonParams?: InitConfig['clickToPayButtonParams']
   onReadyPaymentInstance?: (paymentInstance: ClientSdkInstance) => void
   googlePayContainerRef?: RefObject<HTMLDivElement | null>
   applePayContainerRef?: RefObject<HTMLDivElement | null>
@@ -82,6 +83,7 @@ const Payment = (props: PaymentProps) => {
     mbwayButtonParams,
     cashAppButtonParams,
     pixAutomaticoButtonParams,
+    clickToPayButtonParams,
     googlePayContainerRef,
     applePayContainerRef,
     paypalContainerRef,
@@ -133,6 +135,7 @@ const Payment = (props: PaymentProps) => {
       mbwayButtonParams,
       cashAppButtonParams,
       pixAutomaticoButtonParams,
+      clickToPayButtonParams,
     }
 
     if (googlePayContainerRef?.current) {
