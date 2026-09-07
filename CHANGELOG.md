@@ -1,3 +1,7 @@
+**1.35.0**
+
+Added `onWalletCardType` to the `Payment` component input properties. Apple Pay and Google Pay report the payer's card funding type before the charge, and the callback receives `(data, pauseUntil)` - call `pauseUntil` to hold the wallet flow while an update intent method resolves. Also exposes `totalPriceStatus` in `googlePayButtonParams`, required when the intent is updated inside the event.
+
 **1.34.0**
 
 Added `clickToPayButtonParams` to the `Payment` component input properties to allow enabling and configuring Click to Pay.

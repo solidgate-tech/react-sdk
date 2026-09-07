@@ -11,7 +11,7 @@ import {
   SdkLoader,
 } from "@solidgate/client-sdk-loader"
 
-import ClientSdkEventsProvider from "../../types/ClientSdkEventProvider"
+import ClientSdkEventsProvider, { WalletCardTypeCallback } from "../../types/ClientSdkEventProvider"
 
 import { IFRAME_CONTAINER_ID } from '../../constants'
 
@@ -39,6 +39,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   cashAppButtonParams?: Omit<InitConfig['cashAppButtonParams'], 'containerId'>
   pixAutomaticoButtonParams?: Omit<InitConfig['pixAutomaticoButtonParams'], 'containerId'>
   clickToPayButtonParams?: InitConfig['clickToPayButtonParams']
+  onWalletCardType?: WalletCardTypeCallback
   onReadyPaymentInstance?: (paymentInstance: ClientSdkInstance) => void
   googlePayContainerRef?: RefObject<HTMLDivElement | null>
   applePayContainerRef?: RefObject<HTMLDivElement | null>
@@ -108,7 +109,8 @@ const Payment = (props: PaymentProps) => {
     onOrderStatus = () => {},
     onResize = () => {},
     onReadyPaymentInstance = () => {},
-    onCard = () => {}
+    onCard = () => {},
+    onWalletCardType = () => {}
   } = props
 
   const getInitConfig = () => {
@@ -280,6 +282,7 @@ const Payment = (props: PaymentProps) => {
     onOrderStatus,
     onResize,
     onCard,
+    onWalletCardType,
   }, sdkInstance)
 
   const initClientSdk = async (config: InitConfig) => {

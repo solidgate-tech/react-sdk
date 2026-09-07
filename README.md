@@ -153,6 +153,50 @@ createRoot(document.getElementById('root')!).render(
 
 ```
 
+#### Wallet card type
+
+Apple Pay and Google Pay report the payer's card funding type before the charge. Handle
+`onWalletCardType` to inspect it and, optionally, pause the wallet flow with `pauseUntil`
+while you call an update intent method (`update`, `updateCheckout`). The side effect has
+a 25 s budget, measured from the moment the event fired.
+
+```tsx
+import { useState } from 'react'
+import Payment, {
+  ClientSdkInstance,
+  InitConfig,
+  WalletCardTypeCallback
+} from '@solidgate/react-sdk'
+
+const App = () => {
+  const [form, setForm] = useState<ClientSdkInstance | null>(null)
+
+  // required when you update the intent inside the event
+  const googlePayButtonParams: InitConfig['googlePayButtonParams'] = {
+    totalPriceStatus: 'TOTAL_PRICE_STATUS_ESTIMATED'
+  }
+
+  const handleWalletCardType: WalletCardTypeCallback = (data, pauseUntil) => {
+    if (data.card.type === 'unknown') {
+      return // no intent update - the wallet continues immediately
+    }
+
+    pauseUntil(async () => {
+      await form?.update({ partialIntent: intentFor(data.card.type) })
+    })
+  }
+
+  return (
+    <Payment
+      merchantData={merchantData}
+      googlePayButtonParams={googlePayButtonParams}
+      onWalletCardType={handleWalletCardType}
+      onReadyPaymentInstance={setForm}
+    />
+  )
+}
+```
+
 ### Resign form
 
 Render a <a href="https://docs.solidgate.com/payments/integrate/payment-form/resign-payment-form/" target="_blank">resign payment form</a> component in your React project.

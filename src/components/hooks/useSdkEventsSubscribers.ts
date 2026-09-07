@@ -4,9 +4,15 @@ import {
   MessageType,
 } from '@solidgate/client-sdk-loader'
 
-import clientSdkEventProvider from "../../types/ClientSdkEventProvider"
+import clientSdkEventProvider, { WalletCardTypeCallback } from "../../types/ClientSdkEventProvider"
 
-export const useSdkEventsSubscribers = (callbacks: Partial<clientSdkEventProvider>, sdkInstance: ClientSdkInstance | null) => {
+export const WALLET_CARD_TYPE_EVENT = 'walletCardType'
+
+type SdkEventsSubscribers = Partial<clientSdkEventProvider> & {
+  onWalletCardType?: WalletCardTypeCallback
+}
+
+export const useSdkEventsSubscribers = (callbacks: SdkEventsSubscribers, sdkInstance: ClientSdkInstance | null) => {
   const {
     onMounted = () => {},
     onError = () => {},
@@ -21,6 +27,7 @@ export const useSdkEventsSubscribers = (callbacks: Partial<clientSdkEventProvide
     onResize = () => {},
     onCard = () => {},
     onPaymentDetails = () => {},
+    onWalletCardType = () => {},
   } = callbacks;
 
   const updateCallbackRef = <T>(callback: T): MutableRefObject<T> => {
@@ -45,6 +52,7 @@ export const useSdkEventsSubscribers = (callbacks: Partial<clientSdkEventProvide
     [MessageType.Resize]: updateCallbackRef(onResize),
     [MessageType.Card]: updateCallbackRef(onCard),
     [MessageType.PaymentDetails]: updateCallbackRef(onPaymentDetails),
+    [WALLET_CARD_TYPE_EVENT]: updateCallbackRef(onWalletCardType),
   }
 
   const subscribe = useCallback((sdkInstance: ClientSdkInstance) => {
@@ -61,12 +69,15 @@ export const useSdkEventsSubscribers = (callbacks: Partial<clientSdkEventProvide
     sdkInstance.on(MessageType.Resize, (e) => callbackRefs[MessageType.Resize].current(e.data));
     sdkInstance.on(MessageType.Card, (e) => callbackRefs[MessageType.Card].current(e.data));
     sdkInstance.on(MessageType.PaymentDetails, (e) => callbackRefs[MessageType.PaymentDetails].current(e.data));
+    sdkInstance.on(WALLET_CARD_TYPE_EVENT, (event, pauseUntil) => callbackRefs[WALLET_CARD_TYPE_EVENT].current(event.data, pauseUntil));
   }, []);
 
   const unsubscribe = useCallback((sdkInstance: ClientSdkInstance) => {
     Object.values(MessageType).forEach((type) => {
       sdkInstance.unsubscribe(type);
     });
+
+    sdkInstance.unsubscribe(WALLET_CARD_TYPE_EVENT);
   }, []);
 
   useEffect(() => {
