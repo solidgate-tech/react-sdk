@@ -110,6 +110,7 @@ const Payment = (props: PaymentProps) => {
     onResize = () => {},
     onReadyPaymentInstance = () => {},
     onCard = () => {},
+    onInvoicePreview = () => {},
     onWalletCardType = () => {}
   } = props
 
@@ -282,6 +283,7 @@ const Payment = (props: PaymentProps) => {
     onOrderStatus,
     onResize,
     onCard,
+    onInvoicePreview,
     onWalletCardType,
   }, sdkInstance)
 

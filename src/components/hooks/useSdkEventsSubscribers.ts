@@ -27,6 +27,7 @@ export const useSdkEventsSubscribers = (callbacks: SdkEventsSubscribers, sdkInst
     onResize = () => {},
     onCard = () => {},
     onPaymentDetails = () => {},
+    onInvoicePreview = () => {},
     onWalletCardType = () => {},
   } = callbacks;
 
@@ -52,6 +53,7 @@ export const useSdkEventsSubscribers = (callbacks: SdkEventsSubscribers, sdkInst
     [MessageType.Resize]: updateCallbackRef(onResize),
     [MessageType.Card]: updateCallbackRef(onCard),
     [MessageType.PaymentDetails]: updateCallbackRef(onPaymentDetails),
+    [MessageType.InvoicePreview]: updateCallbackRef(onInvoicePreview),
     [WALLET_CARD_TYPE_EVENT]: updateCallbackRef(onWalletCardType),
   }
 
@@ -69,6 +71,7 @@ export const useSdkEventsSubscribers = (callbacks: SdkEventsSubscribers, sdkInst
     sdkInstance.on(MessageType.Resize, (e) => callbackRefs[MessageType.Resize].current(e.data));
     sdkInstance.on(MessageType.Card, (e) => callbackRefs[MessageType.Card].current(e.data));
     sdkInstance.on(MessageType.PaymentDetails, (e) => callbackRefs[MessageType.PaymentDetails].current(e.data));
+    sdkInstance.on(MessageType.InvoicePreview, (e) => callbackRefs[MessageType.InvoicePreview].current(e.data));
     sdkInstance.on(WALLET_CARD_TYPE_EVENT, (event, pauseUntil) => callbackRefs[WALLET_CARD_TYPE_EVENT].current(event.data, pauseUntil));
   }, []);
 

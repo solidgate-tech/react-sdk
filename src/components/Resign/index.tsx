@@ -23,7 +23,7 @@ import useSdkEventSubscribers from '../hooks/useSdkEventsSubscribers'
 import '../../boot'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 
-interface ResignProps extends Partial<Omit<ClientSdkEventsProvider, 'onCard'>> {
+interface ResignProps extends Partial<Omit<ClientSdkEventsProvider, 'onCard' | 'onInvoicePreview'>> {
   resignRequest: ResignRequest,
   container?: NonNullable<ResignFormConfig['container']>,
   appearance?: NonNullable<ResignFormConfig['appearance']>,

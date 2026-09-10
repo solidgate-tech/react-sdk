@@ -197,6 +197,47 @@ const App = () => {
 }
 ```
 
+#### Checkout updates
+
+Change the checkout line items, discounts or subscription data after the form is mounted
+with `updateCheckout`.
+
+The invoice preview itself arrives through the `onInvoicePreview` callback. It is sent by
+the SDK during the form initialization process.
+
+```tsx
+import { useState } from 'react'
+import Payment, {
+  ClientSdkInstance,
+  InvoicePreviewMessage,
+  UpdateCheckoutConfig
+} from '@solidgate/react-sdk'
+
+const App = () => {
+  const [form, setForm] = useState<ClientSdkInstance | null>(null)
+
+  const handleInvoicePreview = (e: InvoicePreviewMessage) => {
+    console.log(e.invoicePreview.total, e.invoicePreview.currency)
+  }
+
+  const changeQuantity = async (quantity: number) => {
+    const config: UpdateCheckoutConfig = {
+      lineItems: [{ productPriceId: 'price_id', quantity }]
+    }
+
+    await form!.updateCheckout(config)
+  }
+
+  return (
+    <Payment
+      merchantData={merchantData}
+      onInvoicePreview={handleInvoicePreview}
+      onReadyPaymentInstance={setForm}
+    />
+  )
+}
+```
+
 ### Resign form
 
 Render a <a href="https://docs.solidgate.com/payments/integrate/payment-form/resign-payment-form/" target="_blank">resign payment form</a> component in your React project.
