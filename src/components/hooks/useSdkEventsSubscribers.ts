@@ -20,6 +20,7 @@ export const useSdkEventsSubscribers = (callbacks: SdkEventsSubscribers, sdkInst
     onFail = () => {},
     onSubmit = () => {},
     onVerify = () => {},
+    onProcessing = () => {},
     onCustomStylesAppended = () => {},
     onFormRedirect = () => {},
     onInteraction = () => {},
@@ -46,6 +47,7 @@ export const useSdkEventsSubscribers = (callbacks: SdkEventsSubscribers, sdkInst
     [MessageType.Fail]: updateCallbackRef(onFail),
     [MessageType.Submit]: updateCallbackRef(onSubmit),
     [MessageType.Verify]: updateCallbackRef(onVerify),
+    [MessageType.Processing]: updateCallbackRef(onProcessing),
     [MessageType.CustomStylesAppended]: updateCallbackRef(onCustomStylesAppended),
     [MessageType.Redirect]: updateCallbackRef(onFormRedirect),
     [MessageType.Interaction]: updateCallbackRef(onInteraction),
@@ -64,6 +66,7 @@ export const useSdkEventsSubscribers = (callbacks: SdkEventsSubscribers, sdkInst
     sdkInstance.on(MessageType.Fail, (e) => callbackRefs[MessageType.Fail].current(e.data));
     sdkInstance.on(MessageType.Submit, (e) => callbackRefs[MessageType.Submit].current(e.data));
     sdkInstance.on(MessageType.Verify, (e) => callbackRefs[MessageType.Verify].current(e.data));
+    sdkInstance.on(MessageType.Processing, (e) => callbackRefs[MessageType.Processing].current(e.data));
     sdkInstance.on(MessageType.CustomStylesAppended, (e) => callbackRefs[MessageType.CustomStylesAppended].current(e.data));
     sdkInstance.on(MessageType.Redirect, (e) => callbackRefs[MessageType.Redirect].current(e.data));
     sdkInstance.on(MessageType.Interaction, (e) => callbackRefs[MessageType.Interaction].current(e.data));

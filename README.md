@@ -95,6 +95,8 @@ const App = () => {
 
   const handleOnVerify = (e: SdkMessage[MessageType.Verify]) => {}
 
+  const handleOnProcessing = (e: SdkMessage[MessageType.Processing]) => {}
+
   const handleOnRedirectMessage = (e: SdkMessage[MessageType.Redirect]) => {}
 
   const handleOnCustomStylesAppended = (e: SdkMessage[MessageType.CustomStylesAppended]) => {}
@@ -136,6 +138,7 @@ const App = () => {
         onSubmit={handleOnSubmit}
         onInteraction={handleOnInteraction}
         onVerify={handleOnVerify}
+        onProcessing={handleOnProcessing}
         onFormRedirect={handleOnRedirectMessage}
         onCustomStylesAppended={handleOnCustomStylesAppended}
         onReadyPaymentInstance={handleOnReadyPaymentInstance}
@@ -268,6 +271,8 @@ function App () {
 
   const handleOnVerify = (e: SdkMessage[MessageType.Verify]) => {}
 
+  const handleOnProcessing = (e: SdkMessage[MessageType.Processing]) => {}
+
   const handleOnRedirectMessage = (e: SdkMessage[MessageType.Redirect]) => {}
 
   const handleOnCustomStylesAppended = (e: SdkMessage[MessageType.CustomStylesAppended]) => {}
@@ -291,6 +296,7 @@ function App () {
       onSubmit={handleOnSubmit}
       onInteraction={handleOnInteraction}
       onVerify={handleOnVerify}
+      onProcessing={handleOnProcessing}
       onFormRedirect={handleOnRedirectMessage}
       onCustomStylesAppended={handleOnCustomStylesAppended}
       onReadyResignInstance={handleOnReadyResignInstance}
