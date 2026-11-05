@@ -1,3 +1,7 @@
+**1.41.0**
+
+Added `gcashButtonParams` and `gcashContainerRef` to the `Payment` component input properties to allow enabling and configuring GCash
+
 **1.40.0**
 
 Added `klarnaNetworkButtonParams` and `klarnaNetworkContainerRef` to the `Payment` component input properties to allow enabling and configuring Klarna Network

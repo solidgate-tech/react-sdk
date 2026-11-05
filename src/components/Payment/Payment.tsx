@@ -39,6 +39,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   cashAppButtonParams?: Omit<InitConfig['cashAppButtonParams'], 'containerId'>
   pixAutomaticoButtonParams?: Omit<InitConfig['pixAutomaticoButtonParams'], 'containerId'>
   klarnaNetworkButtonParams?: Omit<InitConfig['klarnaNetworkButtonParams'], 'containerId'>
+  gcashButtonParams?: Omit<InitConfig['gcashButtonParams'], 'containerId'>
   clickToPayButtonParams?: InitConfig['clickToPayButtonParams']
   onWalletCardType?: WalletCardTypeCallback
   onReadyPaymentInstance?: (paymentInstance: ClientSdkInstance) => void
@@ -54,6 +55,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   cashAppContainerRef?: RefObject<HTMLDivElement | null>
   pixAutomaticoContainerRef?: RefObject<HTMLDivElement | null>
   klarnaNetworkContainerRef?: RefObject<HTMLDivElement | null>
+  gcashContainerRef?: RefObject<HTMLDivElement | null>
 }
 
 const StyledPayment = styled.div`
@@ -87,6 +89,7 @@ const Payment = (props: PaymentProps) => {
     cashAppButtonParams,
     pixAutomaticoButtonParams,
     klarnaNetworkButtonParams,
+    gcashButtonParams,
     clickToPayButtonParams,
     googlePayContainerRef,
     applePayContainerRef,
@@ -100,6 +103,7 @@ const Payment = (props: PaymentProps) => {
     cashAppContainerRef,
     pixAutomaticoContainerRef,
     klarnaNetworkContainerRef,
+    gcashContainerRef,
     onMounted = () => {},
     onError = () => {},
     onSuccess = () => {},
@@ -144,6 +148,7 @@ const Payment = (props: PaymentProps) => {
       cashAppButtonParams,
       pixAutomaticoButtonParams,
       klarnaNetworkButtonParams,
+      gcashButtonParams,
       clickToPayButtonParams,
     }
 
@@ -280,6 +285,17 @@ const Payment = (props: PaymentProps) => {
       )
       if (klarnaNetworkParams) {
         config.klarnaNetworkButtonParams = klarnaNetworkParams
+      }
+    }
+
+    if (gcashContainerRef?.current) {
+      const gcashParams = getPayButtonParams(
+        props,
+        'gcashButtonParams',
+        gcashContainerRef.current
+      )
+      if (gcashParams) {
+        config.gcashButtonParams = gcashParams
       }
     }
 
