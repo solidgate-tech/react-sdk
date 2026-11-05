@@ -38,6 +38,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   mbwayButtonParams?: Omit<InitConfig['mbwayButtonParams'], 'containerId'>
   cashAppButtonParams?: Omit<InitConfig['cashAppButtonParams'], 'containerId'>
   pixAutomaticoButtonParams?: Omit<InitConfig['pixAutomaticoButtonParams'], 'containerId'>
+  klarnaNetworkButtonParams?: Omit<InitConfig['klarnaNetworkButtonParams'], 'containerId'>
   clickToPayButtonParams?: InitConfig['clickToPayButtonParams']
   onWalletCardType?: WalletCardTypeCallback
   onReadyPaymentInstance?: (paymentInstance: ClientSdkInstance) => void
@@ -52,6 +53,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   mbwayContainerRef?: RefObject<HTMLDivElement | null>
   cashAppContainerRef?: RefObject<HTMLDivElement | null>
   pixAutomaticoContainerRef?: RefObject<HTMLDivElement | null>
+  klarnaNetworkContainerRef?: RefObject<HTMLDivElement | null>
 }
 
 const StyledPayment = styled.div`
@@ -84,6 +86,7 @@ const Payment = (props: PaymentProps) => {
     mbwayButtonParams,
     cashAppButtonParams,
     pixAutomaticoButtonParams,
+    klarnaNetworkButtonParams,
     clickToPayButtonParams,
     googlePayContainerRef,
     applePayContainerRef,
@@ -96,6 +99,7 @@ const Payment = (props: PaymentProps) => {
     mbwayContainerRef,
     cashAppContainerRef,
     pixAutomaticoContainerRef,
+    klarnaNetworkContainerRef,
     onMounted = () => {},
     onError = () => {},
     onSuccess = () => {},
@@ -139,6 +143,7 @@ const Payment = (props: PaymentProps) => {
       mbwayButtonParams,
       cashAppButtonParams,
       pixAutomaticoButtonParams,
+      klarnaNetworkButtonParams,
       clickToPayButtonParams,
     }
 
@@ -264,6 +269,17 @@ const Payment = (props: PaymentProps) => {
       )
       if (pixAutomaticoParams) {
         config.pixAutomaticoButtonParams = pixAutomaticoParams
+      }
+    }
+
+    if (klarnaNetworkContainerRef?.current) {
+      const klarnaNetworkParams = getPayButtonParams(
+        props,
+        'klarnaNetworkButtonParams',
+        klarnaNetworkContainerRef.current
+      )
+      if (klarnaNetworkParams) {
+        config.klarnaNetworkButtonParams = klarnaNetworkParams
       }
     }
 

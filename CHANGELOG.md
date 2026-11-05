@@ -1,3 +1,7 @@
+**1.40.0**
+
+Added `klarnaNetworkButtonParams` and `klarnaNetworkContainerRef` to the `Payment` component input properties to allow enabling and configuring Klarna Network
+
 **1.39.0**
 
 Added **processing** event:

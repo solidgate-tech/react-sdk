@@ -156,6 +156,38 @@ createRoot(document.getElementById('root')!).render(
 
 ```
 
+#### Klarna Network
+
+Pass `klarnaNetworkButtonParams` to configure the Klarna button, and `klarnaNetworkContainerRef`
+to render it in your own container instead of the default one next to the form.
+
+```tsx
+import React, { useRef } from 'react'
+import Payment, { InitConfig } from '@solidgate/react-sdk'
+
+const klarnaNetworkButtonParams: Omit<InitConfig['klarnaNetworkButtonParams'], 'containerId'> = {
+  theme: 'dark',
+  shape: 'pill',
+  intents: ['PAY'],
+  height: 48
+}
+
+const App = () => {
+  const klarnaNetworkContainerRef = useRef(null)
+
+  return (
+    <div>
+      <div ref={klarnaNetworkContainerRef} />
+      <Payment
+        merchantData={merchantData}
+        klarnaNetworkButtonParams={klarnaNetworkButtonParams}
+        klarnaNetworkContainerRef={klarnaNetworkContainerRef}
+      />
+    </div>
+  )
+}
+```
+
 #### Wallet card type
 
 Apple Pay and Google Pay report the payer's card funding type before the charge. Handle
