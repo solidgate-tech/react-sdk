@@ -13,7 +13,8 @@ import {
   CASHAPP_BUTTON_CONTAINER_ID,
   PIX_AUTOMATICO_BUTTON_CONTAINER_ID,
   KLARNA_NETWORK_BUTTON_CONTAINER_ID,
-  GCASH_BUTTON_CONTAINER_ID
+  GCASH_BUTTON_CONTAINER_ID,
+  SATISPAY_BUTTON_CONTAINER_ID
 } from '../constants'
 
 const payButtonIds = {
@@ -68,10 +69,14 @@ const payButtonIds = {
   gcashButtonParams: {
     title: 'GCash',
     id: GCASH_BUTTON_CONTAINER_ID
+  },
+  satispayButtonParams: {
+    title: 'Satispay',
+    id: SATISPAY_BUTTON_CONTAINER_ID
   }
 }
 
-const getPayButtonParams = <T extends 'googlePayButtonParams' | 'applePayButtonParams' | 'paypalButtonParams' | 'pixButtonParams' | 'upiButtonParams'  | 'pixQrButtonParams' | 'bizumButtonParams' | 'blikButtonParams' | 'mbwayButtonParams' | 'cashAppButtonParams' | 'pixAutomaticoButtonParams' | 'klarnaNetworkButtonParams' | 'gcashButtonParams'> (
+const getPayButtonParams = <T extends 'googlePayButtonParams' | 'applePayButtonParams' | 'paypalButtonParams' | 'pixButtonParams' | 'upiButtonParams'  | 'pixQrButtonParams' | 'bizumButtonParams' | 'blikButtonParams' | 'mbwayButtonParams' | 'cashAppButtonParams' | 'pixAutomaticoButtonParams' | 'klarnaNetworkButtonParams' | 'gcashButtonParams' | 'satispayButtonParams'> (
     config: InitConfig,
     key: T,
     container: HTMLDivElement | null

@@ -1,3 +1,7 @@
+**1.42.0**
+
+Added `satispayButtonParams` and `satispayContainerRef` to the `Payment` component input properties to allow enabling and configuring Satispay
+
 **1.41.0**
 
 Added `gcashButtonParams` and `gcashContainerRef` to the `Payment` component input properties to allow enabling and configuring GCash

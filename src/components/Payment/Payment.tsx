@@ -40,6 +40,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   pixAutomaticoButtonParams?: Omit<InitConfig['pixAutomaticoButtonParams'], 'containerId'>
   klarnaNetworkButtonParams?: Omit<InitConfig['klarnaNetworkButtonParams'], 'containerId'>
   gcashButtonParams?: Omit<InitConfig['gcashButtonParams'], 'containerId'>
+  satispayButtonParams?: Omit<InitConfig['satispayButtonParams'], 'containerId'>
   clickToPayButtonParams?: InitConfig['clickToPayButtonParams']
   onWalletCardType?: WalletCardTypeCallback
   onReadyPaymentInstance?: (paymentInstance: ClientSdkInstance) => void
@@ -56,6 +57,7 @@ interface PaymentProps extends Partial<ClientSdkEventsProvider> {
   pixAutomaticoContainerRef?: RefObject<HTMLDivElement | null>
   klarnaNetworkContainerRef?: RefObject<HTMLDivElement | null>
   gcashContainerRef?: RefObject<HTMLDivElement | null>
+  satispayContainerRef?: RefObject<HTMLDivElement | null>
 }
 
 const StyledPayment = styled.div`
@@ -90,6 +92,7 @@ const Payment = (props: PaymentProps) => {
     pixAutomaticoButtonParams,
     klarnaNetworkButtonParams,
     gcashButtonParams,
+    satispayButtonParams,
     clickToPayButtonParams,
     googlePayContainerRef,
     applePayContainerRef,
@@ -104,6 +107,7 @@ const Payment = (props: PaymentProps) => {
     pixAutomaticoContainerRef,
     klarnaNetworkContainerRef,
     gcashContainerRef,
+    satispayContainerRef,
     onMounted = () => {},
     onError = () => {},
     onSuccess = () => {},
@@ -149,6 +153,7 @@ const Payment = (props: PaymentProps) => {
       pixAutomaticoButtonParams,
       klarnaNetworkButtonParams,
       gcashButtonParams,
+      satispayButtonParams,
       clickToPayButtonParams,
     }
 
@@ -296,6 +301,17 @@ const Payment = (props: PaymentProps) => {
       )
       if (gcashParams) {
         config.gcashButtonParams = gcashParams
+      }
+    }
+
+    if (satispayContainerRef?.current) {
+      const satispayParams = getPayButtonParams(
+        props,
+        'satispayButtonParams',
+        satispayContainerRef.current
+      )
+      if (satispayParams) {
+        config.satispayButtonParams = satispayParams
       }
     }
 
