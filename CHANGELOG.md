@@ -1,3 +1,7 @@
+**1.43.0**
+
+Added `resetEnabled` to `bizumButtonParams` and `mbwayButtonParams` of the `Payment` component input properties by updating `@solidgate/client-sdk-loader` to 1.43.0
+
 **1.42.0**
 
 Added `satispayButtonParams` and `satispayContainerRef` to the `Payment` component input properties to allow enabling and configuring Satispay
